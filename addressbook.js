@@ -160,6 +160,28 @@ function deleteContact() {
   });
 }
 
+function serachByCityOrState() {
+  let filtteredAddressBook = new Array();
+  let choice = Number(prompt("1.serach by city 2. serach by state"));
+  switch (choice) {
+    case 1:
+      let city = prompt("enter the city");
+      filtteredAddressBook = addressbookList.filter(filterValueByCity);
+      function filterValueByCity(element) {
+        if (element.city === city) return element;
+      }
+      break;
+    case 2:
+      let state = prompt("enter the state");
+      filtteredAddressBook = addressbookList.filter(filterValueByState);
+      function filterValueByState(element) {
+        if (element.state === state) return element;
+      }
+      break;
+  }
+  console.log(filtteredAddressBook);
+}
+
 function sizeOfAddressbook() {
   console.log("the count of entries are : " + addressbookList.length);
 }
@@ -210,7 +232,7 @@ let contact_1 = newAddressBook(
   "Viresh",
   "Rawool",
   "parel",
-  "mumbai",
+  "pune",
   "maharashtra",
   "400012",
   "91 8655899904",
@@ -229,7 +251,9 @@ let contact_2 = newAddressBook(
 let loop = true;
 while (loop) {
   let choice = parseInt(
-    prompt("1.display 2.edit 3.delete 4.count 5.add 0.exit : ")
+    prompt(
+      "1.display 2.edit 3.delete 4.count 5.add 6.search by city or state 0.exit : "
+    )
   );
   switch (choice) {
     case 1:
@@ -246,6 +270,9 @@ while (loop) {
       break;
     case 5:
       takeEntryDetails();
+      break;
+    case 6:
+      serachByCityOrState();
       break;
     case 0:
       loop = false;
