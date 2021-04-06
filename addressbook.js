@@ -137,6 +137,9 @@ function deleteContact() {
     }
   });
 }
+function sizeOfAddressbook(){
+    console.log("the count of entries are : "+addressbookList.length);
+}
 
 function updateEntry(choice) {}
 function editContact() {
@@ -148,7 +151,7 @@ function editContact() {
           "enter the choice to edit 1.firstname 2.lastname 3.address 4.city 5.state 6.zip 7.phone 8.email"
         )
       );
-      let value = prompt("enter the value");
+      let value = prompt("enter the value: ");
       switch (choice) {
         case 1:
           element.firstName = value;
@@ -203,7 +206,7 @@ let contact_2 = newAddressBook(
 );
 let loop = true;
 while (loop) {
-  let choice = parseInt(prompt("1.display 2.edit 3.delete 0.exit"));
+  let choice = parseInt(prompt("1.display 2.edit 3.delete 4.count 0.exit : "));
   switch (choice) {
     case 1:
       displayList();
@@ -214,6 +217,9 @@ while (loop) {
     case 3:
       deleteContact();
       break;
+      case 4:
+        sizeOfAddressbook();
+        break;
     case 0:
       loop = false;
     default:
