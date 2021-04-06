@@ -100,7 +100,8 @@ class Addressbook {
     );
   }
 }
-let arraylist = new Array();
+let addressbookList = new Array();
+const prompt = require("prompt-sync")();
 function newAddressBook(
   firstName,
   lastName,
@@ -121,12 +122,58 @@ function newAddressBook(
     phone,
     email
   );
-  arraylist.push(addressbook);
-  return arraylist;
+  addressbookList.push(addressbook);
+  return addressbookList;
 }
 
+function displayList() {
+  console.log(addressbookList);
+}
 
-let addressbook_1 =newAddressBook(
+function updateEntry(choice) {}
+function editContact() {
+  let name = prompt("enter the name: ");
+  addressbookList.forEach((element) => {
+    if (element.firstName === name) {
+      let choice = parseInt(
+        prompt(
+          "enter the choice to edit 1.firstname 2.lastname 3.address 4.city 5.state 6.zip 7.phone 8.email"
+        )
+      );
+      let value = prompt("enter the value");
+      switch (choice) {
+        case 1:
+          element.firstName = value;
+          break;
+        case 2:
+          element.lastName = value;
+          break;
+        case 3:
+          element.address = value;
+          break;
+        case 4:
+          element.city = value;
+          break;
+        case 5:
+          element.state = value;
+          break;
+        case 6:
+          element.zip = value;
+          break;
+        case 7:
+          element.phone = value;
+          break;
+        case 8:
+          element.email = value;
+          break;
+        default:
+          console.log("invalid");
+      }
+    }
+  });
+}
+
+let contact_1 = newAddressBook(
   "Viresh",
   "Rawool",
   "parel",
@@ -136,14 +183,29 @@ let addressbook_1 =newAddressBook(
   "91 8655899904",
   "abcxyz@.com"
 );
-let addressbook_2 =newAddressBook(
-    "Sidhu",
-    "Rawool",
-    "parel",
-    "mumbai",
-    "maharashtra",
-    "400012",
-    "91 8655899904",
-    "abcxyz@.com"
-  );
-  console.log(arraylist);
+let contact_2 = newAddressBook(
+  "Sidhu",
+  "Rawool",
+  "parel",
+  "mumbai",
+  "maharashtra",
+  "400012",
+  "91 8655899904",
+  "abcxyz@.com"
+);
+let loop = true;
+while (loop) {
+  let choice = parseInt(prompt("1.display 2.edit 0.exit"));
+  switch (choice) {
+    case 1:
+      displayList();
+      break;
+    case 2:
+      editContact();
+      break;
+    case 0:
+      loop = false;
+    default:
+      console.log("thank you");
+  }
+}
