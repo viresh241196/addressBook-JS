@@ -112,23 +112,45 @@ function newAddressBook(
   phone,
   email
 ) {
-  let addressbook = new Addressbook(
-    firstName,
-    lastName,
-    address,
-    city,
-    state,
-    zip,
-    phone,
-    email
-  );
-  addressbookList.push(addressbook);
+  let exist = false;
+  addressbookList.forEach((element) => {
+    if (element.firstName == firstName) {
+      exist = true;
+      console.log("name already exit");
+    }
+  });
+  if (exist === false) {
+    let addressbook = new Addressbook(
+      firstName,
+      lastName,
+      address,
+      city,
+      state,
+      zip,
+      phone,
+      email
+    );
+    addressbookList.push(addressbook);
+  }
   return addressbookList;
+}
+
+function takeEntryDetails() {
+  let firstName = prompt("enter the first name: ");
+  let lastName = prompt("enter the last name: ");
+  let address = prompt("enter the address: ");
+  let city = prompt("enter the city: ");
+  let state = prompt("enter the state: ");
+  let zip = prompt("enter the zip: ");
+  let phone = prompt("enter the phone: ");
+  let email = prompt("enter the email: ");
+  newAddressBook(firstName, lastName, address, city, state, zip, phone, email);
 }
 
 function displayList() {
   console.log(addressbookList);
 }
+
 function deleteContact() {
   let name = prompt("enter the name to delete: ");
   addressbookList.forEach((element) => {
@@ -137,11 +159,11 @@ function deleteContact() {
     }
   });
 }
-function sizeOfAddressbook(){
-    console.log("the count of entries are : "+addressbookList.length);
+
+function sizeOfAddressbook() {
+  console.log("the count of entries are : " + addressbookList.length);
 }
 
-function updateEntry(choice) {}
 function editContact() {
   let name = prompt("enter the name: ");
   addressbookList.forEach((element) => {
@@ -206,7 +228,9 @@ let contact_2 = newAddressBook(
 );
 let loop = true;
 while (loop) {
-  let choice = parseInt(prompt("1.display 2.edit 3.delete 4.count 0.exit : "));
+  let choice = parseInt(
+    prompt("1.display 2.edit 3.delete 4.count 5.add 0.exit : ")
+  );
   switch (choice) {
     case 1:
       displayList();
@@ -217,9 +241,12 @@ while (loop) {
     case 3:
       deleteContact();
       break;
-      case 4:
-        sizeOfAddressbook();
-        break;
+    case 4:
+      sizeOfAddressbook();
+      break;
+    case 5:
+      takeEntryDetails();
+      break;
     case 0:
       loop = false;
     default:
