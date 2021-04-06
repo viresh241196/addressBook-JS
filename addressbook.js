@@ -180,9 +180,12 @@ function serachByCityOrState() {
       break;
   }
   console.log(filtteredAddressBook);
+  console.log("count is : " + filtteredAddressBook.length);
 }
 
-function sizeOfAddressbook() {
+function sizeOfFilterAddressBook() {}
+
+function sizeOfAddressbook(addressbookList) {
   console.log("the count of entries are : " + addressbookList.length);
 }
 
@@ -266,7 +269,7 @@ while (loop) {
       deleteContact();
       break;
     case 4:
-      sizeOfAddressbook();
+      sizeOfAddressbook(addressbookList);
       break;
     case 5:
       takeEntryDetails();
