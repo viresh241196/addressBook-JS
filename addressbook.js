@@ -129,6 +129,14 @@ function newAddressBook(
 function displayList() {
   console.log(addressbookList);
 }
+function deleteContact() {
+  let name = prompt("enter the name to delete: ");
+  addressbookList.forEach((element) => {
+    if (element.firstName == name) {
+      addressbookList.pop(element);
+    }
+  });
+}
 
 function updateEntry(choice) {}
 function editContact() {
@@ -195,13 +203,16 @@ let contact_2 = newAddressBook(
 );
 let loop = true;
 while (loop) {
-  let choice = parseInt(prompt("1.display 2.edit 0.exit"));
+  let choice = parseInt(prompt("1.display 2.edit 3.delete 0.exit"));
   switch (choice) {
     case 1:
       displayList();
       break;
     case 2:
       editContact();
+      break;
+    case 3:
+      deleteContact();
       break;
     case 0:
       loop = false;
