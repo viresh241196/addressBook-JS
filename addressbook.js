@@ -96,7 +96,7 @@ class Addressbook {
       ",phone=" +
       this.phone +
       ",email=" +
-      this.email
+      this.email+"\n"
     );
   }
 }
@@ -183,7 +183,14 @@ function serachByCityOrState() {
   console.log("count is : " + filtteredAddressBook.length);
 }
 
-function sizeOfFilterAddressBook() {}
+function sortByPerson() {
+  sortedList = addressbookList.sort((a, b) => {
+    if (a._firstName < b._firstName) return -1;
+    if (a._firstName > b._firstName) return 1;
+    return 0;
+  });
+  console.log(sortedList.toString());
+}
 
 function sizeOfAddressbook(addressbookList) {
   console.log("the count of entries are : " + addressbookList.length);
@@ -255,7 +262,7 @@ let loop = true;
 while (loop) {
   let choice = parseInt(
     prompt(
-      "1.display 2.edit 3.delete 4.count 5.add 6.search by city or state 0.exit : "
+      "1.display 2.edit 3.delete 4.count 5.add 6.search by city or state 7.sortByPreson 0.exit : "
     )
   );
   switch (choice) {
@@ -269,13 +276,16 @@ while (loop) {
       deleteContact();
       break;
     case 4:
-      sizeOfAddressbook(addressbookList);
+      sizeOfAddressbook();
       break;
     case 5:
       takeEntryDetails();
       break;
     case 6:
       serachByCityOrState();
+      break;
+    case 7:
+      sortByPerson();
       break;
     case 0:
       loop = false;
