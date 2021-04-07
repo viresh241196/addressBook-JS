@@ -96,7 +96,8 @@ class Addressbook {
       ",phone=" +
       this.phone +
       ",email=" +
-      this.email+"\n"
+      this.email +
+      "\n"
     );
   }
 }
@@ -183,12 +184,43 @@ function serachByCityOrState() {
   console.log("count is : " + filtteredAddressBook.length);
 }
 
-function sortByPerson() {
-  sortedList = addressbookList.sort((a, b) => {
-    if (a._firstName < b._firstName) return -1;
-    if (a._firstName > b._firstName) return 1;
-    return 0;
-  });
+function sortedList() {
+  let sortedList = new Array();
+  let option = Number(
+    prompt(
+      "sort via 1.sort by person 2. sort by City 3.sort by State 4.sort by Zip"
+    )
+  );
+  switch (option) {
+    case 1:
+      sortedList = addressbookList.sort((a, b) => {
+        if (a._firstName < b._firstName) return -1;
+        if (a._firstName > b._firstName) return 1;
+        return 0;
+      });
+      break;
+      case 2:
+        sortedList = addressbookList.sort((a, b) => {
+          if (a._city < b._city) return -1;
+          if (a._city > b._city) return 1;
+          return 0;
+        });
+        break;
+    case 3:
+      sortedList = addressbookList.sort((a, b) => {
+        if (a._state < b._state) return -1;
+        if (a._state > b._state) return 1;
+        return 0;
+      });
+      break;
+    case 4:
+      sortedList = addressbookList.sort((a, b) => {
+        if (a._zip < b._zip) return -1;
+        if (a._zip > b._zip) return 1;
+        return 0;
+      });
+      break;
+  }
   console.log(sortedList.toString());
 }
 
@@ -262,7 +294,7 @@ let loop = true;
 while (loop) {
   let choice = parseInt(
     prompt(
-      "1.display 2.edit 3.delete 4.count 5.add 6.search by city or state 7.sortByPreson 0.exit : "
+      "1.display 2.edit 3.delete 4.count 5.add 6.search by city or state 7.sortedList 0.exit : "
     )
   );
   switch (choice) {
@@ -285,7 +317,7 @@ while (loop) {
       serachByCityOrState();
       break;
     case 7:
-      sortByPerson();
+      sortedList();
       break;
     case 0:
       loop = false;
